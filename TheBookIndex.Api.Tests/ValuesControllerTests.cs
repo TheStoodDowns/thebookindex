@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Xunit;
-using Amazon.Lambda.Core;
 using Amazon.Lambda.TestUtilities;
 using Amazon.Lambda.APIGatewayEvents;
 
 using Newtonsoft.Json;
-
-using TheBookIndex.Api;
 
 
 namespace TheBookIndex.Api.Tests

@@ -10,6 +10,5 @@
   "configuration": "Release",
   "framework": "netcoreapp3.1",
   "s3-prefix": "TheBookIndex.Api/",
-  "template": "serverless.template",
-  "template-parameters": "ShouldCreateBucket=true;BucketName="
+  "template": "serverless.template"
 }
