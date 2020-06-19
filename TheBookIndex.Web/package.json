@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --aot && aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app && aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths /"
   },
   "private": true,
   "dependencies": {
