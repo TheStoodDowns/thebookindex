@@ -26,5 +26,11 @@ jobs:
         run: npm install
         working-directory: ${{env.working-directory}}
       - name: Build Application
-        run: npm run deploy
+        run: npm run buildprod
+        working-directory: ${{env.working-directory}}
+      - name: Sync To AWS S3 Bucket
+        run: aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app
+        working-directory: ${{env.working-directory}}
+      - name: Invalidate Cloudfront Distribution
+        run: aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths "/" "/*"
         working-directory: ${{env.working-directory}}
