@@ -8,6 +8,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+        working-directory: ./TheBookIndex.Web
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: "ap-southeast-2"
     strategy:
       matrix:
         node-version: [10.x]
@@ -17,13 +22,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Get into Correct Directory
-        run: cd TheBookIndex.Web | pwd
       - name: Install Dependencies
         run: pwd | npm install
+        working-directory: ${{env.working-directory}}
       - name: Build Application
         run: pwd | npm run deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "ap-southeast-2"
+        working-directory: ${{env.working-directory}}
