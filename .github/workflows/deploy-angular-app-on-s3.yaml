@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Get into Correct Directory
-        run: ls -l
+        run: cd TheBookIndex.Web
       - name: Install Dependencies
         run: npm install
       - name: Build Application
