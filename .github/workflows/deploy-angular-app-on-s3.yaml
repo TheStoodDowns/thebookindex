@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Get into Correct Directory
-        run: cd TheBookIndex.Web
+        run: cd TheBookIndex.Web | pwd
       - name: Install Dependencies
-        run: npm install
+        run: pwd | npm install
       - name: Build Application
-        run: npm run deploy
+        run: pwd | npm run deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
