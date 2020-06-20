@@ -17,10 +17,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Get into Correct Directory
+        run: ls -l
       - name: Install Dependencies
-        run: |
-          cd TheBookIndex.Web |
-          npm install
+        run: npm install
       - name: Build Application
         run: npm run deploy
         env:
