@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: run cloudformation template
-        run: aws cloudformation deploy --template-file AWS_Stacks/app-stack.yaml --stack-name app-stack --region 
+        run: aws cloudformation deploy --template-file AWS_Stacks/app-stack.yaml --stack-name app-stack 
 
   build-test-web:
     needs: update-aws-environment
