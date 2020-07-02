@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
   # Starting from Angular site deployment described here: https://medium.com/@ibliskavka/aws-angular-stack-automation-b45767bda2ec
 
 Description: >
-  Creates the AWS infrastructure for running an Angular app in AWS using S3, CloudFront & Route53
+  Creates the AWS infrastructure for running TheBookIndex.net on AWS using S3, CloudFront & Route53
 
 Parameters:
 
