@@ -7,7 +7,6 @@ on:
     types: [closed]
 jobs:
   build-test-web:
-    needs: update-aws-environment
     runs-on: ubuntu-latest
     env:
         working-directory: ./TheBookIndex.Web
