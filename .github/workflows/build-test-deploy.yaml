@@ -77,6 +77,9 @@ jobs:
         with:
           name: api-build-artifact
           path: ${{env.working-directory}}/obj/Release/netcoreapp3.1
+      - name: Install Amazon.Lambda.Tools
+        run: dotnet tool install -g Amazon.Lambda.Tools
+        working-directory: ${{env.working-directory}}
       - name: Deploy Serverless stack for api
         run: dotnet lambda deploy-serverless
         working-directory: ${{env.working-directory}}
