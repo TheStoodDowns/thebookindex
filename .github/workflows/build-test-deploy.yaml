@@ -26,7 +26,7 @@ jobs:
         run: npm run buildprod
         working-directory: ${{env.working-directory}}
       - name: Run Tests
-        run: npm test
+        run: ng test --watch=false
         working-directory: ${{env.working-directory}}
       - name: Store Build as artifact
         uses: actions/upload-artifact@v2

@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "ng build --prod --aot && aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app && aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths /",
+    "testprod": "ng test --watch=false",
     "buildprod": "ng build --prod --aot",
     "syncaws": "aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app",
     "invalidatedistribution": "aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths /"
