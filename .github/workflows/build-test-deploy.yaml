@@ -22,11 +22,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
         working-directory: ${{env.working-directory}}
+      - name: Run Unit Tests
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        working-directory: ${{env.working-directory}}
+      - name: Run E2E Tests
+        run: npm rum e2e
+        working-directory: ${{env.working-directory}}
       - name: Build Application
         run: npm run buildprod
-        working-directory: ${{env.working-directory}}
-      - name: Run Tests
-        run: npm run testprod
         working-directory: ${{env.working-directory}}
       - name: Store Build as artifact
         uses: actions/upload-artifact@v2
