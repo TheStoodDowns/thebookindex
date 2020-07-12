@@ -9,6 +9,7 @@
   "region": "ap-southeast-2",
   "configuration": "Release",
   "framework": "netcoreapp3.1",
+  "s3-bucket": "TheBookIndex-Build-Artifacts",
   "s3-prefix": "TheBookIndex.Api/",
   "template": "serverless.template"
 }
