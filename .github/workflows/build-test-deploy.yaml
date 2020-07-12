@@ -34,7 +34,6 @@ jobs:
           path: ${{env.working-directory}}/dist/TheBookIndex
 
   build-test-api:
-    needs: update-aws-environment
     runs-on: windows-latest
     env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
