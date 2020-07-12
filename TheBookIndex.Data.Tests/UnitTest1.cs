@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace TheBookIndex.Data.Tests
@@ -8,7 +7,7 @@ namespace TheBookIndex.Data.Tests
         [Fact]
         public void Test1()
         {
-
+            Assert.True(true);
         }
     }
 }

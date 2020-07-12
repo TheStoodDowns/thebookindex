@@ -27,6 +27,7 @@ jobs:
         working-directory: ${{env.working-directory}}
       - name: Run Tests
         run: npm test
+        working-directory: ${{env.working-directory}}
       - name: Store Build as artifact
         uses: actions/upload-artifact@v2
         with:
