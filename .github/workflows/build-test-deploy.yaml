@@ -96,7 +96,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/download-artifact@v2
         with:
-          name: my-artifact
+          name: web-build-artifact
           path: ${{env.working-directory}}/dist/TheBookIndex
       - name: Deploy Serverless stack for website
         run: serverless deploy --region ap-southeast-2
