@@ -99,11 +99,11 @@ jobs:
         with:
           name: web-build-artifact
           path: ${{env.working-directory}}/dist/TheBookIndex
-      - name: install Serverless Framework
-        run: npm install serverless
-        working-directory: ${{env.working-directory}}
+      # - name: install Serverless Framework
+      #   run: npm install serverless
+      #   working-directory: ${{env.working-directory}}
       - name: Deploy Serverless stack for website
-        run: serverless deploy --region ${{env.AWS_REGION}}
+        run: npm install serverless | serverless deploy --region ${{env.AWS_REGION}}
         working-directory: ${{env.working-directory}}
       - name: Sync To AWS S3 Bucket
         run: aws s3 sync dist/TheBookIndex s3://thebookindex-angular-web-app
