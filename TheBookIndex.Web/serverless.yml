@@ -2,11 +2,9 @@ service: thebookindex-net-angular-web-app
 
 frameworkVersion: ">=1.2.0 <2.0.0"
 
-plugins:
-  - serverless-single-page-app-plugin
-
 custom:
   s3Bucket: thebookindex-angular-web-app
+  s3LocalPath: dist/
 
 provider:
   name: aws
