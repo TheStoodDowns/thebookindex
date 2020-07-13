@@ -92,6 +92,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: "ap-southeast-2"
+        cloudfront_distribution_id: E31RQP1ZIRASNT
     steps:
       - uses: actions/checkout@master
       - uses: actions/download-artifact@v2
@@ -99,12 +100,12 @@ jobs:
           name: web-build-artifact
           path: ${{env.working-directory}}/dist/TheBookIndex
       - name: Deploy Serverless stack for website
-        run: serverless deploy --region ap-southeast-2
+        run: serverless deploy --region ${{env.AWS_REGION}}
         working-directory: ${{env.working-directory}}
       - name: Sync To AWS S3 Bucket
-        run: aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app
+        run: aws s3 sync dist/TheBookIndex s3://thebookindex-angular-web-app
         working-directory: ${{env.working-directory}}
       - name: Invalidate Cloudfront Distribution
-        run: aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths "/" "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{env.cloudfront_distribution_id}} --paths "/" "/*"
         working-directory: ${{env.working-directory}}
 

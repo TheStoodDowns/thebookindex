@@ -8,11 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --aot && aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app && aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths /",
     "testprod": "ng test --watch=false",
-    "buildprod": "ng build --prod --aot",
-    "syncaws": "aws s3 sync dist/TheBookIndex s3://the-book-index-angular-app",
-    "invalidatedistribution": "aws cloudfront create-invalidation --distribution-id E1WAVIX9Z7GAG2 --paths /"
+    "buildprod": "ng build --prod --aot"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +44,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin"
   }
 }
