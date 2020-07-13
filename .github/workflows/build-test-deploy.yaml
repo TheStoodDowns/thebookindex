@@ -100,7 +100,7 @@ jobs:
           name: web-build-artifact
           path: ${{env.working-directory}}/dist/TheBookIndex
       - name: install Serverless Framework
-        run: npm install serverless -g
+        run: npm install serverless
         working-directory: ${{env.working-directory}}
       - name: Deploy Serverless stack for website
         run: serverless deploy --region ${{env.AWS_REGION}}
