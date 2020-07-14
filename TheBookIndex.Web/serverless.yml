@@ -82,7 +82,9 @@ resources:
             ViewerProtocolPolicy: redirect-to-https
           ## The certificate to use when viewers use HTTPS to request objects.
           ViewerCertificate:
-            CloudFrontDefaultCertificate: 'true'
+            SslSupportMethod: sni-only
+            MinimumProtocolVersion: TLSv1.2_2019
+            AcmCertificateArn: arn:aws:acm:us-east-1:730735583181:certificate/acff1637-db5f-459b-8fe0-24eef701cd38
           ## Uncomment the following section in case you want to enable logging for CloudFront requests
           # Logging:
           #   IncludeCookies: 'false'
