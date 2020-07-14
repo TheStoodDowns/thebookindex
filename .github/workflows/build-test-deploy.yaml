@@ -105,6 +105,9 @@ jobs:
       - name: Deploy Serverless stack for website
         run: SLS_DEBUG=* serverless deploy --region ${{env.AWS_REGION}}
         working-directory: ${{env.working-directory}}
+      - name: Display serverless outputs
+        run: serverless info
+        working-directory: ${{env.working-directory}}
       - name: Sync To AWS S3 Bucket
         run: aws s3 sync dist/TheBookIndex s3://thebookindex-angular-web-app
         working-directory: ${{env.working-directory}}
