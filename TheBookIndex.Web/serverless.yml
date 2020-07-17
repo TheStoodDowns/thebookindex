@@ -89,6 +89,8 @@ resources:
               QueryString: 'false'
               Cookies:
                 Forward: none
+            ## The protocol that users can use to access the files in the origin. To allow HTTP use `allow-all`
+            ViewerProtocolPolicy: redirect-to-https
           CacheBehaviors:
             - AllowedMethods:
               - DELETE
