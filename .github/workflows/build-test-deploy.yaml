@@ -84,12 +84,12 @@ jobs:
           TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=root;
         run: dotnet test
       - name: Build api
-        run: dotnet build --configuration Release
+        run: dotnet publish --configuration Release
       - name: Store Build as artifact
         uses: actions/upload-artifact@v2
         with:
           name: api-build-artifact
-          path: TheBookIndex.Api\obj\Release\netcoreapp3.1
+          path: TheBookIndex.Api\bin\Release\netcoreapp3.1
 
   deploy-api:
     needs: [build-test-web, build-test-api]
@@ -105,7 +105,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: api-build-artifact
-          path: ${{env.working-directory}}/obj/Release/netcoreapp3.1
+          path: ${{env.working-directory}}/bin/Release/netcoreapp3.1
       - name: Install Amazon.Lambda.Tools
         run: dotnet tool install -g Amazon.Lambda.Tools
         working-directory: ${{env.working-directory}}
