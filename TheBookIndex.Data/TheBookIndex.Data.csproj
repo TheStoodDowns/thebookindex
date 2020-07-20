@@ -4,4 +4,23 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Scripts\s0001 - Create Authors Table.sql" />
+    <None Remove="Scripts\s0001 - Create initial tables and data.sql" />
+    <None Remove="Scripts\s0002 - Add New Authors to Authors Table.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\s0001 - Create Authors Table.sql" />
+    <EmbeddedResource Include="Scripts\s0002 - Add New Authors to Authors Table.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-core" Version="4.4.0" />
+    <PackageReference Include="dbup-mysql" Version="4.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.21" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,8 @@
+CREATE TABLE `Authors` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `FirstName` VARCHAR(100) NULL,
+  `MiddleNames` VARCHAR(100) NULL,
+  `LastName` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `Id_UNIQUE` (`Id` ASC) VISIBLE,
+  INDEX `Authors_LastName` (`LastName` ASC) VISIBLE);

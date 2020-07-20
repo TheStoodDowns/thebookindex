@@ -15,6 +15,15 @@
         "Policies": [
           "AWSLambdaFullAccess"
         ],
+        "VpcConfig": {
+          "SecurityGroupIds" : [ "sg-0547fd8e20fe8d0aa" ],
+          "SubnetIds" : [ "subnet-0c534a8a707554bd1", "subnet-00db88fb27dc32be5" ]
+        },
+        "Environment": {
+          "Variables": {
+            "ASPNETCORE_ENVIRONMENT" : "Production"
+          }
+        },
         "Events": {
           "ProxyResource": {
             "Type": "Api",
