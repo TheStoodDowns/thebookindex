@@ -83,13 +83,16 @@ jobs:
         env:
           TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=root;
         run: dotnet test
+      - name: Wher Am I
+        run: ls -l
+        working-directory: ${{env.working-directory}}
       - name: Build api
         run: dotnet publish --configuration Release
       - name: Store Build as artifact
         uses: actions/upload-artifact@v2
         with:
           name: api-build-artifact
-          path: TheBookIndex.Api\bin\Release\netcoreapp3.1
+          path: TheBookIndex.Api/bin/Release/netcoreapp3.1
 
   deploy-api:
     needs: [build-test-web, build-test-api]
