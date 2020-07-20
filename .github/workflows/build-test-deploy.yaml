@@ -83,7 +83,7 @@ jobs:
           done
       - name: Run api Tests
         env:
-          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=user; Pwd=password; persistsecurityinfo=True;
+          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=user; Pwd=password; sslmode=none; persistsecurityinfo=True;
         run: dotnet test
       - name: Build api
         run: dotnet build --configuration Release
