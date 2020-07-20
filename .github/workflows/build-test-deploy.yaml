@@ -60,9 +60,11 @@ jobs:
       mysql:
           image: mysql:latest
           env:
-              MYSQL_ROOT_PASSWORD: password
-              MYSQL_DATABASE: thebookindex
-              MYSQL_ROOT_HOST: "%"
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+            MYSQL_DATABASE: thebookindex
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_ROOT_HOST: "%"
           ports:
               - 3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -81,7 +83,7 @@ jobs:
           done
       - name: Run api Tests
         env:
-          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=root; Pwd=password; sslmode=none; persistsecurityinfo=True;
+          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=user; Pwd=password; sslmode=none; persistsecurityinfo=True;
         run: dotnet test
       - name: Build api
         run: dotnet build --configuration Release
