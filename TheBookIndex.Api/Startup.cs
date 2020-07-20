@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +19,7 @@ namespace TheBookIndex.Api
 
         public Startup()
         {
+            Console.WriteLine($"Environment: {ConfigurationManager.EnvironmentName}");
             _configurationManager = ConfigurationManager.CreateForWebAndService(Directory.GetCurrentDirectory(), ConfigurationManager.EnvironmentName);
             _configuration = _configurationManager.Configuration;
         }

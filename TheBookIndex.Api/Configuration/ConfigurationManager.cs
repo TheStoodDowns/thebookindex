@@ -50,7 +50,7 @@ namespace TheBookIndex.Api.Configuration
         public IConfigurationRoot Configuration { get; }
 
         public static string EnvironmentName => GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").ToLower();
-        public ConnectionString ConnectionString => new ConnectionString(GetEnvironmentVariable("TBI_CONNECTIONSTRING"));
+        public ConnectionString ConnectionString => new ConnectionString(Configuration.GetValue<string>("TBI_CONNECTIONSTRING"));
 
         private static string GetEnvironmentVariable(string variable)
         {
