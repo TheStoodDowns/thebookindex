@@ -56,13 +56,32 @@ jobs:
     strategy:
       matrix:
         dotnet-version: [3.1.x]
+    services:
+      mysql:
+          image: mysql:latest
+          env:
+              MYSQL_USER: tbi_user
+              MYSQL_ROOT_PASSWORD: password
+              MYSQL_DATABASE: thebookindex
+          ports:
+              - 3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@master
       - name: Setup .Net Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Verify MySQL connection
+        env:
+          PORT: ${{ job.services.mysql.ports[3306] }}
+        run: |
+          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+            sleep 1
+          done
       - name: Run api Tests
+        env:
+          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=tbi_user; Pwd=password; sslmode=none; persistsecurityinfo=True;
         run: dotnet test
       - name: Build api
         run: dotnet build --configuration Release

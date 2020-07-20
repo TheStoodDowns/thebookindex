@@ -20,7 +20,7 @@ namespace TheBookIndex.Api
         public Startup()
         {
             Console.WriteLine($"Environment: {ConfigurationManager.EnvironmentName}");
-            _configurationManager = ConfigurationManager.CreateForWebAndService(Directory.GetCurrentDirectory(), ConfigurationManager.EnvironmentName);
+            _configurationManager = ConfigurationManager.BuildConfiguration(Directory.GetCurrentDirectory(), ConfigurationManager.EnvironmentName);
             _configuration = _configurationManager.Configuration;
         }
 

@@ -8,33 +8,12 @@ namespace TheBookIndex.Api.Configuration
 {
     public class ConfigurationManager
     {
-        public static ConfigurationManager CreateForIntegrationTest(string rootPath)
-        {
-            var builder = BuildBaseConfiguration(rootPath, EnvironmentName);
-
-            return new ConfigurationManager(builder.Build());
-        }
-
-        public static ConfigurationManager CreateForWebAndService(string rootPath, string environmentName)
-        {
-            var awsOptions = new AWSOptions
-            {
-                Region = RegionEndpoint.APSoutheast2
-            };
-
-            var builder = BuildBaseConfiguration(rootPath, environmentName)
-                .AddSystemsManager($"/tbi/{environmentName.ToLower()}", awsOptions);
-
-            return new ConfigurationManager(builder.Build());
-        }
-
-
         private ConfigurationManager(IConfigurationRoot configuration)
         {
             Configuration = configuration;
         }
 
-        private static IConfigurationBuilder BuildBaseConfiguration(string rootPath, string environmentName)
+        public static ConfigurationManager BuildConfiguration(string rootPath, string environmentName)
         {
             //Log.Information("Building Configuration from Path {rootPath} for environmentName {environmentName}", rootPath, environmentName.ToLower());
 
@@ -44,13 +23,29 @@ namespace TheBookIndex.Api.Configuration
                 .AddJsonFile($"appsettings.{environmentName.ToLower()}.private.json", true, true)
                 .AddEnvironmentVariables();
 
-            return builder;
+            if (IsProduction())
+            {
+                var awsOptions = new AWSOptions
+                {
+                    Region = RegionEndpoint.APSoutheast2
+                };
+
+                builder.AddSystemsManager($"/tbi/{environmentName.ToLower()}", awsOptions);
+            }
+
+            return new ConfigurationManager(builder.Build());
         }
 
         public IConfigurationRoot Configuration { get; }
 
         public static string EnvironmentName => GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").ToLower();
         public ConnectionString ConnectionString => new ConnectionString(Configuration.GetValue<string>("TBI_CONNECTIONSTRING"));
+
+        public static bool IsBuildServer() => EnvironmentName == "buildserver";
+        public static bool IsDevelopment() => EnvironmentName == "development";
+        public static bool IsStaging() => EnvironmentName == "staging";
+        public static bool IsProduction() => EnvironmentName == "production";
+
 
         private static string GetEnvironmentVariable(string variable)
         {
