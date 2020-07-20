@@ -87,7 +87,7 @@ jobs:
         run: ls -l
         working-directory: ${{env.working-directory}}
       - name: Build api
-        run: dotnet publish --configuration Release
+        run: dotnet build --configuration Release
       - name: Store Build as artifact
         uses: actions/upload-artifact@v2
         with:
