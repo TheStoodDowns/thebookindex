@@ -60,10 +60,8 @@ jobs:
       mysql:
           image: mysql:latest
           env:
-            MYSQL_USER: user
-            MYSQL_PASSWORD: password
             MYSQL_DATABASE: thebookindex
-            MYSQL_ROOT_PASSWORD: password
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_ROOT_HOST: "%"
           ports:
               - 3306
@@ -83,7 +81,7 @@ jobs:
           done
       - name: Run api Tests
         env:
-          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=user; Pwd=password; sslmode=none; AllowPublicKeyRetrieval=true; persistsecurityinfo=True;
+          TBI_CONNECTIONSTRING: Server=127.0.0.1; Port=${{ job.services.mysql.ports[3306] }}; Database=thebookindex; Uid=root;
         run: dotnet test
       - name: Build api
         run: dotnet build --configuration Release
