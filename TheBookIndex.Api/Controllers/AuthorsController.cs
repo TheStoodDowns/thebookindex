@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TheBookIndex.Data.Repositories;
 
@@ -21,6 +22,7 @@ namespace TheBookIndex.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
+            Console.WriteLine("Get Authors . . .");
             return Ok(await _authorRepository.GetAuthors());
         }
 
@@ -28,6 +30,7 @@ namespace TheBookIndex.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
+            Console.WriteLine($"Get Author id {id} . . .");
             return Ok(await _authorRepository.GetAuthor(id));
         }
 

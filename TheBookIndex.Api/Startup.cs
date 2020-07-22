@@ -22,6 +22,7 @@ namespace TheBookIndex.Api
             Console.WriteLine($"Environment: {ConfigurationManager.EnvironmentName}");
             _configurationManager = ConfigurationManager.BuildConfiguration(Directory.GetCurrentDirectory(), ConfigurationManager.EnvironmentName);
             _configuration = _configurationManager.Configuration;
+            Console.WriteLine("Configuration setup Complete");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container

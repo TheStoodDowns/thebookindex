@@ -17,7 +17,19 @@ namespace TheBookIndex.Api.Filters
 
         public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
         {
-            UpdateDatabase.UpdateDatabaseIfRequired(_connectionString);
+            Console.WriteLine("Starting DB Upodate");
+            try
+            {
+                UpdateDatabase.UpdateDatabaseIfRequired(_connectionString);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error updating db: {e.Message}");
+                Console.WriteLine($"  Db Error inner exception: {e.InnerException?.Message}");
+                throw;
+            }
+
+            Console.WriteLine("DB Upodate complete");
 
             return next;
         }
