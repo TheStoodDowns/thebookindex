@@ -24,14 +24,12 @@ namespace TheBookIndex.Api
             {
                 _configurationManager = ConfigurationManager.BuildConfiguration(Directory.GetCurrentDirectory(),
                     ConfigurationManager.EnvironmentName);
+                _configuration = _configurationManager.Configuration;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Something went wrong setting up config: {e.Message}");
-                Console.WriteLine($"  Inner Exception: {e.InnerException?.Message}");
-
+                Console.WriteLine($"Something went wrong setting up config: {e}");
             }
-            _configuration = _configurationManager.Configuration;
             Console.WriteLine("Configuration setup Complete");
         }
 
