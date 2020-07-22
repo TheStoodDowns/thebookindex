@@ -17,6 +17,7 @@ namespace TheBookIndex.Api.Configuration
         {
             //Log.Information("Building Configuration from Path {rootPath} for environmentName {environmentName}", rootPath, environmentName.ToLower());
 
+            Console.WriteLine("Create builder");
             var builder = new ConfigurationBuilder().SetBasePath(rootPath)
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{environmentName.ToLower()}.json", true, true)
@@ -29,10 +30,11 @@ namespace TheBookIndex.Api.Configuration
                 {
                     Region = RegionEndpoint.APSoutheast2
                 };
-
+                Console.WriteLine("Add Systems Manager Parameter Store");
                 builder.AddSystemsManager($"/tbi/{environmentName.ToLower()}", awsOptions);
             }
-
+            
+            Console.WriteLine("Return builder");
             return new ConfigurationManager(builder.Build());
         }
 

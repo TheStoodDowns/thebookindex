@@ -22,9 +22,12 @@ namespace TheBookIndex.Api
             Console.WriteLine($"Environment: {ConfigurationManager.EnvironmentName}");
             try
             {
+                Console.WriteLine($"Root Path: {Directory.GetCurrentDirectory()}");
                 _configurationManager = ConfigurationManager.BuildConfiguration(Directory.GetCurrentDirectory(),
                     ConfigurationManager.EnvironmentName);
+                Console.WriteLine("Configuration Manager built");
                 _configuration = _configurationManager.Configuration;
+                Console.WriteLine("Configuration assigned");
             }
             catch (Exception e)
             {
