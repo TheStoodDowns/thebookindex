@@ -33,9 +33,20 @@ namespace TheBookIndex.Api.Configuration
                 Console.WriteLine("Add Systems Manager Parameter Store");
                 builder.AddSystemsManager($"/tbi/{environmentName.ToLower()}", awsOptions);
             }
-            
-            Console.WriteLine("Return builder");
-            return new ConfigurationManager(builder.Build());
+
+            try
+            {
+                Console.WriteLine("Return builder");
+                var newConfigManager = builder.Build();
+
+                Console.WriteLine("Return builder");
+                return new ConfigurationManager(newConfigManager);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public IConfigurationRoot Configuration { get; }
