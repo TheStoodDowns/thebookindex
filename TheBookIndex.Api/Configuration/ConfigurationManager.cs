@@ -19,9 +19,9 @@ namespace TheBookIndex.Api.Configuration
 
             Console.WriteLine("Create builder");
             var builder = new ConfigurationBuilder().SetBasePath(rootPath)
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{environmentName.ToLower()}.json", true, true)
-                .AddJsonFile($"appsettings.{environmentName.ToLower()}.private.json", true, true)
+                //.AddJsonFile("appsettings.json", true, true)
+                //.AddJsonFile($"appsettings.{environmentName.ToLower()}.json", true, true)
+                //.AddJsonFile($"appsettings.{environmentName.ToLower()}.private.json", true, true)
                 .AddEnvironmentVariables();
 
             if (IsProduction())
@@ -36,7 +36,7 @@ namespace TheBookIndex.Api.Configuration
 
             try
             {
-                Console.WriteLine("Return builder");
+                Console.WriteLine("Build config");
                 var newConfigManager = builder.Build();
 
                 Console.WriteLine("Return builder");
