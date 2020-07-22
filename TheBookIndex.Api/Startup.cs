@@ -20,7 +20,17 @@ namespace TheBookIndex.Api
         public Startup()
         {
             Console.WriteLine($"Environment: {ConfigurationManager.EnvironmentName}");
-            _configurationManager = ConfigurationManager.BuildConfiguration(Directory.GetCurrentDirectory(), ConfigurationManager.EnvironmentName);
+            try
+            {
+                _configurationManager = ConfigurationManager.BuildConfiguration(Directory.GetCurrentDirectory(),
+                    ConfigurationManager.EnvironmentName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Something went wrong setting up config: {e.Message}");
+                Console.WriteLine($"  Inner Exception: {e.InnerException?.Message}");
+
+            }
             _configuration = _configurationManager.Configuration;
             Console.WriteLine("Configuration setup Complete");
         }
